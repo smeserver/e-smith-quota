@@ -1,0 +1,26 @@
+Index: e-smith-quota/e-smith-quota.spec
+diff -u e-smith-quota/root/sbin/e-smith/warnquota:1.5 e-smith-quota/root/sbin/e-smith/warnquota:1.6
+--- e-smith-quota/root/sbin/e-smith/warnquota:1.5	Wed Oct 16 13:07:56 2002
++++ e-smith-quota/root/sbin/e-smith/warnquota	Thu Mar 17 16:29:55 2005
+@@ -220,9 +220,9 @@
+ 	# Plus, they've already had 7 days of warnings.
+ 	#------------------------------------------------------------------
+ 
+-	next if (  (%$usersOverQuota->{$user}{usage} 
+-		  > %$usersOverQuota->{$user}{hardQuota}) and
+-		   (%$usersOverQuota->{$user}{hardQuota} != 0) );
++	next if (  ($usersOverQuota->{$user}{usage} 
++		  > $usersOverQuota->{$user}{hardQuota}) and
++		   ($usersOverQuota->{$user}{hardQuota} != 0) );
+ 
+ 	my $templates = '/etc/e-smith/templates';
+ 	my $source = '/usr/lib/e-smith-quota/userOverQuota.tmpl';
+@@ -238,7 +238,7 @@
+ 
+ 	print QMAIL $t->fill_in( HASH => {
+ 	    conf    => $conf,
+-	    data   => %$usersOverQuota->{$user}
++	    data   => $usersOverQuota->{$user}
+ 	});
+ 
+ 	close QMAIL;

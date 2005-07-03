@@ -1,0 +1,169 @@
+Index: e-smith-quota/e-smith-quota.spec
+diff -u e-smith-quota/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm:1.14 e-smith-quota/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm:1.15
+--- e-smith-quota/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm:1.14	Wed Nov 10 10:50:05 2004
++++ e-smith-quota/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm	Thu Mar 10 19:17:49 2005
+@@ -6,7 +6,7 @@
+ # Please call us at (613) 236-0743 or visit our web site www.e-smith.net
+ # for details.
+ #
+-# $Id: quota.pm,v 1.13 2003/04/10 17:14:16 lijied Exp $
++# $Id: quota.pm,v 1.14 2004/11/10 15:50:05 charlieb Exp $
+ #
+ #----------------------------------------------------------------------
+ 
+@@ -25,7 +25,7 @@
+ our @EXPORT = qw(
+ 	showInitial modifyUser performModifyUser
+ );
+-our $VERSION = sprintf '%d.%03d', q$Revision: 1.13 $ =~ /: (\d+).(\d+)/;
++our $VERSION = sprintf '%d.%03d', q$Revision: 1.14 $ =~ /: (\d+).(\d+)/;
+ 
+ =pod
+ 
+@@ -154,8 +154,6 @@
+ 
+ $FM->{cgi}->param(-name=>'acct', -value=>'foononex');
+ is($FM->modifyUser(),'','modifyUser');
+-like($FM->{cgi}->param('status_message'), qr/NO_SUCH_ACCT/, 
+-	' .. no such account');
+ 
+ =end testing
+ 
+@@ -165,33 +163,27 @@
+ {
+     my $self = shift;
+     my $q = $self->{cgi};
++    my $msg;
+ 
+     my $adb = esmith::AccountsDB->open();
+     my $acct = $q->param ('acct');
+     my $rec = $adb->get($acct);
+     unless (defined $rec)
+     {
+-	$self->wherenext('Initial');
+-	$q->param(-name=>'status_message', -value=>
+-	    $self->localise('ERR_NO_SUCH_ACCT').$acct);
+-	return '';
++	$msg = $self->localise('ERR_NO_SUCH_ACCT').$acct;
++	return $self->error($msg, 'Initial');
+     }
+     my $type = $rec->prop('type');
+     unless ($type eq "user")
+     {
+-	$self->wherenext('Initial');
+-	$q->param(-name=>'status_message', -value=>
+-	    $self->localise('ERR_NOT_A_USER_ACCT').$acct.
+-	    $self->localise('ACCOUNT_IS_TYPE').$type);
+-	return '';
++	$msg = $self->localise('ERR_NOT_A_USER_ACCT').$acct.$self->localise('ACCOUNT_IS_TYPE').$type;
++	return $self->error($msg, 'Initial');
+     }
+     my $uid = getpwnam($acct);
+     unless ($uid)
+     {
+-	$self->wherenext('Initial');
+-	$q->param(-name=>'status_message', -value=>
+-	    $self->localise('COULD_NOT_GET_UID').$acct);
+-	return '';
++	$msg = $self->localise('COULD_NOT_GET_UID').$acct;
++	return $self->error($msg, 'Initial');
+     }
+ 
+     my $name = $rec->prop("FirstName")." ".$rec->prop("LastName");
+@@ -238,8 +230,6 @@
+ 
+ $FM->{cgi}->param(-name=>'acct', -value=>'fooquuxb');
+ is($FM->performModifyUser(),'','performModifyUser');
+-like($FM->{cgi}->param('status_message'), qr/NO_SUCH_ACCT/, 
+-	' .. no such account');
+ 
+ =end testing
+ 
+@@ -249,6 +239,7 @@
+ {
+     my $self = shift;
+     my $q = $self->{cgi};
++    my $msg;
+ 
+     my $adb = esmith::AccountsDB->open();
+     my $acct = $q->param ('acct');
+@@ -256,35 +247,25 @@
+     my $rec = $adb->get($acct);
+     unless (defined $rec)
+     {
+-	$self->wherenext('Initial');
+-	$q->param(-name=>'status_message', -value=>
+-	    $self->localise('ERR_NO_SUCH_ACCT').$acct);
+-	return '';
++	$msg = $self->localise('ERR_NO_SUCH_ACCT').$acct;
++	return $self->error($msg, 'Initial');
+     }
+     my $type = $rec->prop('type');
+     unless ($type eq "user")
+     {
+-	$self->wherenext('Initial');
+-	$q->param(-name=>'status_message', -value=>
+-	    $self->localise('ERR_NOT_A_USER_ACCT').$acct.
+-	    $self->localise('ACCOUNT_IS_TYPE').$type);
+-	return '';
++	$msg = $self->localise('ERR_NOT_A_USER_ACCT').$acct.$self->localise('ACCOUNT_IS_TYPE').$type;
++	return $self->error($msg, 'Initial');
+     }
+     my $uid = getpwnam($acct);
+     unless ($uid)
+     {
+-	$self->wherenext('Initial');
+-	$q->param(-name=>'status_message', -value=>
+-	    $self->localise('COULD_NOT_GET_UID').$acct);
+-	return '';
++	$msg = $self->localise('COULD_NOT_GET_UID').$acct;
++	return $self->error($msg, 'Initial');
+     }
+     my $softlim = $q->param ('soft');
+     unless ($softlim =~ /^(\d+)\s*[kmg]?$/i)
+     {
+-	$self->wherenext('Initial');
+-	$q->param(-name=>'status_message', -value=>
+-	    $self->localise('SOFT_VAL_MUST_BE_INTEGER'));
+-        return '';
++	return $self->error('SOFT_VAL_MUST_BE_INTEGER', 'Initial');
+     }
+     my $value = $1;
+     if($softlim =~ /g$/i)
+@@ -303,10 +284,7 @@
+     my $hardlim = $q->param ('hard');
+     unless ($hardlim =~ /^(\d+)\s*[kmg]?$/i)
+     {
+-	$self->wherenext('Initial');
+-	$q->param(-name=>'status_message', -value=>
+-	    $self->localise('HARD_VAL_MUST_BE_INTEGER'));
+-        return '';
++	return $self->error('HARD_VAL_MUST_BE_INTEGER', 'Initial');
+     }
+     $value = $1;
+     if($hardlim =~ /g$/i)
+@@ -328,10 +306,7 @@
+ 
+     unless ($hardlim == 0 or $hardlim >= $softlim)
+     {
+-	$self->wherenext('Initial');
+-	$q->param(-name=>'status_message', -value=>
+-	    $self->localise('ERR_HARD_LT_SOFT'));
+-	return '';
++	return $self->error('ERR_HARD_LT_SOFT', 'Initial');
+     }
+ 	
+ 
+@@ -347,10 +322,8 @@
+     system ("/sbin/e-smith/signal-event", "user-modify", "$acct") == 0
+         or die ($self->localise('ERR_MODIFYING')."\n");
+ 
+-    $self->wherenext('Initial');
+-    $q->param(-name=>'status_message', -value=>
+-	$self->localise('SUCCESSFULLY_MODIFIED').$acct);
+-    return '';
++    $msg = $self->localise('SUCCESSFULLY_MODIFIED').$acct;
++    return $self->success($msg, 'Initial');
+ }
+ 
+ =pod

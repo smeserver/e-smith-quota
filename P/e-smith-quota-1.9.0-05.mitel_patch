@@ -1,0 +1,12 @@
+Index: e-smith-quota/e-smith-quota.spec
+diff -u e-smith-quota/root/etc/rc.d/rc.quota_create:1.2 e-smith-quota/root/etc/rc.d/rc.quota_create:1.3
+--- e-smith-quota/root/etc/rc.d/rc.quota_create:1.2	Fri Dec 24 13:23:45 2004
++++ e-smith-quota/root/etc/rc.d/rc.quota_create	Wed Dec 29 17:03:48 2004
+@@ -13,6 +13,7 @@
+     action $"Converting old group quota files: " \
+ 	/sbin/convertquota -g / && rm -f /quota.group
+ else
++    action $"Remounting / with quota support: " mount -o usrquota,grpquota,remount /
+     action $"Creating quota files: " quotacheck -cug -F vfsv0 /
+ fi
+ action $"Remounting / read-only: " mount -o ro,remount /

@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - quota module
 %define name e-smith-quota
 Name: %{name}
 %define version 1.9.0
-%define release 08
+%define release 09
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -26,6 +26,10 @@ AutoReqProv: no
 e-smith server and gateway software - quota module.
 
 %changelog
+* Sun Jul 03 2005 Shad L. Lords <slords@mail.com>
+- [1.9.0-09]
+- Really fix perms this time. [SF: 1226700]
+
 * Fri Jun 24 2005 Charlie Brady <charlieb@e-smith.com>
 - [1.9.0-08]
 - Make perms of /etc/cron.d/warnquota acceptible to latest crond.
@@ -413,7 +417,7 @@ rm -rf $RPM_BUILD_ROOT
 rm -f %{name}-%{version}-%{release}-filelist
 /sbin/e-smith/genfilelist $RPM_BUILD_ROOT \
     --file /etc/rc.d/rc.quota_create 'attr(0755,root,root)' \
-    --file /etc/cron.d/warnquota 'attr(0544,root,root)' \
+    --file /etc/cron.d/warnquota 'attr(0644,root,root)' \
     > %{name}-%{version}-%{release}-filelist
 echo "%doc COPYING" >> %{name}-%{version}-%{release}-filelist
 

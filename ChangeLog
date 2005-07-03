@@ -2,3 +2,8 @@ Sun Jul  3 17:28:22 2005                                        slords
 
 Mezzanine auto-imported e-smith-quota from e-smith-quota-1.9.0-08.src.rpm.
 ----------------------------------------------------------------------
+Sun Jul  3 17:36:47 2005                                        slords
+
+- Really fix perms this time. [SF: 1226700]
+
+----------------------------------------------------------------------

@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - quota module
 %define name e-smith-quota
 Name: %{name}
 %define version 1.9.0
-%define release 08sme01
+%define release 09
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -26,9 +26,9 @@ AutoReqProv: no
 e-smith server and gateway software - quota module.
 
 %changelog
-* Sun Jul 03 2005 Shad L. Lords <slords@mail.com>
-- [1.9.0-08sme01]
-- Really fix perms this time. [SF: 1226700]
+* Mon Jun 27 2005 Charlie Brady <charlieb@e-smith.com>
+- [1.9.0-09]
+- Really fix permissions of /etc/cron.d/warnquota. [SF: 1226700]
 
 * Fri Jun 24 2005 Charlie Brady <charlieb@e-smith.com>
 - [1.9.0-08]

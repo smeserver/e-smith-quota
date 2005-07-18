@@ -1,0 +1,96 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-quota-1.9.0/root/sbin/e-smith/warnquota mezzanine_patched_e-smith-quota-1.9.0/root/sbin/e-smith/warnquota
+--- e-smith-quota-1.9.0/root/sbin/e-smith/warnquota	2005-07-17 22:06:46.355221136 -0600
++++ mezzanine_patched_e-smith-quota-1.9.0/root/sbin/e-smith/warnquota	2005-07-17 22:05:28.692719048 -0600
+@@ -91,8 +91,8 @@
+ {
+     use Quota;
+ 
+-    my %accounts;
+-    tie %accounts, 'esmith::config', '/home/e-smith/accounts';
++    use esmith::AccountsDB;
++    my $adb = esmith::AccountsDB->open_ro();
+ 
+     my %usersOverQuota;
+     my %usersUnderQuota;
+@@ -102,28 +102,15 @@
+     my $dev = Quota::getqcarg('/home/e-smith/files');
+ 
+     #------------------------------------------------------------
+-    # Look up accounts and user names
+-    #------------------------------------------------------------
+-
+-    my @userAccounts = sort
+-	grep { db_get_type(\%accounts, $_) eq "user" } db_get(\%accounts);
+-
+-    #------------------------------------------------------------
+-    # Exit early if there aren't any user accounts.
+-    #------------------------------------------------------------
+-
+-    exit unless (scalar @userAccounts);
+-
+-    #------------------------------------------------------------
+     # Loop through all user accounts and collect stats.
+     #------------------------------------------------------------
+ 
+-    foreach my $user (@userAccounts)
++    foreach my $user ($adb->users)
+     {
+-	my $uid = getpwnam($user);
++	my $uid = getpwnam($user->key);
+ 	unless ($uid)
+ 	{
+-	    warn("Could not get uid for user \"$user\"");
++	    warn("Could not get uid for user \"" . $user->key ."\"");
+ 	    next;
+ 	}
+ 	my ($bc, $bs, $bh, $bt, $ic, $is, $ih, $it) =
+@@ -131,14 +118,12 @@
+ 
+         if( !defined $bc )     # Quota::query failed
+         {
+-            warn "Cannot query your quota for '$user' on '$dev'\n";
++            warn "Cannot query your quota for '" . $user->key . "' on '$dev'\n";
+             warn "Quota error (are you using NFS?): ", Quota::strerr(), "\n";
+             next;
+         }
+ 
+-	my $name = db_get_prop(\%accounts, $user, "FirstName")
+-	    . " "
+-	    . db_get_prop(\%accounts, $user, "LastName");
++	my $name = $user->prop('FirstName') . " " . $user->prop('LastName');
+ 
+ 	#------------------------------------------------------------
+ 	# Collect user stats if over quota.
+@@ -151,8 +136,8 @@
+ 	{
+ 	    # User has no quota
+ 	    # Add user to data structure.
+-	    ${usersWithNoQuota{$user}} = { 
+-				   username => $user,
++	    ${usersWithNoQuota{$user->key}} = { 
++				   username => $user->key,
+ 				   fullname => $name,
+ 				   usage => toMB($bc),
+ 	    			   softQuota => toMB($bs),
+@@ -166,8 +151,8 @@
+ 	    # gracePeriod is 0 if over hard limit
+ 
+ 	    # Add user to data structure.
+-	    ${usersOverQuota{$user}} = { 
+-				   username => $user,
++	    ${usersOverQuota{$user->key}} = { 
++				   username => $user->key,
+ 				   fullname => $name,
+ 				   usage => toMB($bc),
+ 	    			   softQuota => toMB($bs),
+@@ -179,8 +164,8 @@
+ 	{
+ 	    # User is within quota
+ 	    # Add user to data structure.
+-	    ${usersUnderQuota{$user}} = { 
+-				   username => $user,
++	    ${usersUnderQuota{$user->key}} = { 
++				   username => $user->key,
+ 				   fullname => $name,
+ 				   usage => toMB($bc),
+ 	    			   softQuota => toMB($bs),

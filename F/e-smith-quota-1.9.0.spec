@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - quota module
 %define name e-smith-quota
 Name: %{name}
 %define version 1.9.0
-%define release 09
+%define release 10sme01
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -14,6 +14,8 @@ Patch2: e-smith-quota-1.9.0-04.mitel_patch
 Patch3: e-smith-quota-1.9.0-05.mitel_patch
 Patch4: e-smith-quota-1.9.0-06.mitel_patch
 Patch5: e-smith-quota-1.9.0-07.mitel_patch
+Patch6: e-smith-quota-1.9.0-10.mitel_patch
+Patch7: e-smith-quota-1.9.0-dbmoved.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -26,6 +28,14 @@ AutoReqProv: no
 e-smith server and gateway software - quota module.
 
 %changelog
+* Sun Jul 17 2005 Shad L. Lords <slords@mail.com>
+- [1.9.0-10sme01]
+- Preparations for db move
+
+* Wed Jul 13 2005 Charlie Brady <charlieb@e-smith.com>
+- [1.9.0-10]
+- Add quota setup in fstab templates (moved from e-smith-base).
+
 * Mon Jun 27 2005 Charlie Brady <charlieb@e-smith.com>
 - [1.9.0-09]
 - Really fix permissions of /etc/cron.d/warnquota. [SF: 1226700]
@@ -395,6 +405,8 @@ e-smith server and gateway software - quota module.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
+%patch7 -p1
 
 %build
 mkdir -p root/etc/e-smith/events/post-{install,upgrade}

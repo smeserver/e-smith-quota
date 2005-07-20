@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - quota module
 %define name e-smith-quota
 Name: %{name}
 %define version 1.9.0
-%define release 10sme01
+%define release 11
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -15,7 +15,7 @@ Patch3: e-smith-quota-1.9.0-05.mitel_patch
 Patch4: e-smith-quota-1.9.0-06.mitel_patch
 Patch5: e-smith-quota-1.9.0-07.mitel_patch
 Patch6: e-smith-quota-1.9.0-10.mitel_patch
-Patch7: e-smith-quota-1.9.0-dbmoved.patch
+Patch7: e-smith-quota-1.9.0-11.mitel_patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -28,9 +28,9 @@ AutoReqProv: no
 e-smith server and gateway software - quota module.
 
 %changelog
-* Sun Jul 17 2005 Shad L. Lords <slords@mail.com>
-- [1.9.0-10sme01]
-- Preparations for db move
+* Tue Jul 19 2005 Charlie Brady <charlieb@e-smith.com>
+- [1.9.0-11]
+- Update to current db access APIs (patches by Shad and Charlie) [SF: 1216546]
 
 * Wed Jul 13 2005 Charlie Brady <charlieb@e-smith.com>
 - [1.9.0-10]

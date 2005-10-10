@@ -1,0 +1,26 @@
+Index: e-smith-quota/e-smith-quota.spec
+diff -u e-smith-quota/root/etc/e-smith/templates/usr/lib/e-smith-quota/adminQuotaSummary.tmpl:1.9 e-smith-quota/root/etc/e-smith/templates/usr/lib/e-smith-quota/adminQuotaSummary.tmpl:1.10
+--- e-smith-quota/root/etc/e-smith/templates/usr/lib/e-smith-quota/adminQuotaSummary.tmpl:1.9	Tue Jul 19 23:11:14 2005
++++ e-smith-quota/root/etc/e-smith/templates/usr/lib/e-smith-quota/adminQuotaSummary.tmpl	Tue Oct  4 12:09:42 2005
+@@ -3,7 +3,7 @@
+     use Locale::gettext;
+     
+     my $i18n = new esmith::I18N;
+-    $i18n->setLocale('adminQuotaSummary.tmpl');
++    $i18n->setLocale('adminQuotaSummary');
+ 
+     my $domain = $conf->get_value("DomainName") || "localhost";
+     my $systemName = $conf->get_value("SystemName") || "SME Server";
+Index: e-smith-quota/root/etc/e-smith/templates/usr/lib/e-smith-quota/userOverQuota.tmpl
+diff -u e-smith-quota/root/etc/e-smith/templates/usr/lib/e-smith-quota/userOverQuota.tmpl:1.9 e-smith-quota/root/etc/e-smith/templates/usr/lib/e-smith-quota/userOverQuota.tmpl:1.10
+--- e-smith-quota/root/etc/e-smith/templates/usr/lib/e-smith-quota/userOverQuota.tmpl:1.9	Tue Jul 19 23:11:14 2005
++++ e-smith-quota/root/etc/e-smith/templates/usr/lib/e-smith-quota/userOverQuota.tmpl	Tue Oct  4 12:09:42 2005
+@@ -3,7 +3,7 @@
+     use Locale::gettext;
+ 
+     my $i18n = new esmith::I18N;
+-    $i18n->setLocale('userOverQuota.tmpl');
++    $i18n->setLocale('userOverQuota');
+ 
+     my $domain = $conf->get_value("DomainName") || "localhost";
+     my $systemName = $conf->get_value("SystemName") || "SME Server";

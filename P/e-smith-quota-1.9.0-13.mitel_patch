@@ -1,0 +1,165 @@
+Index: e-smith-quota/e-smith-quota.spec
+diff -u /dev/null e-smith-quota/root/etc/e-smith/locale/it/etc/e-smith/web/functions/quota:1.1
+--- /dev/null	Fri Sep 30 07:56:55 2005
++++ e-smith-quota/root/etc/e-smith/locale/it/etc/e-smith/web/functions/quota	Fri Sep 30 07:55:18 2005
+@@ -0,0 +1,160 @@
++<lexicon lang="it">
++    <entry>
++      <base>FORM_TITLE</base>
++      <trans>Crea, modifica o rimuovi quota utenti</trans>
++    </entry>
++    <entry>
++      <base>UNABLE_TO_OPEN_ACCOUNTS</base>
++      <trans>Impossibile aprire il db accounts</trans>
++    </entry>
++    <entry>
++      <base>NO_ACCOUNTS</base>
++      <trans>Non ci sono utenti nel sistema.</trans>
++    </entry>
++    <entry>
++      <base>QUOTA_DESC</base>
++      <trans>
++        <![CDATA[
++        <p>E' possibile impostare quote disco per gli utenti del sistema
++	facendo clic sul pulsante "Modifica" a fianco dell'utente da
++	modificare.
++
++        <p>Se l'utente supera il "Limite di avvertimento", verranno inviati
++	degli avvisi. Se questo limite viene ecceduto per oltre una settimana o se
++	viene raggiunto il "Limite assoluto", l'utente non potrà salvare nuovi
++	file o ricevere posta.
++
++        <p>Impostando a '0' uno dei limiti disabiliterà quel limite per l'utente
++	corrispondente.
++
++        <p>Lo spazio su disco di ogni utente include l'home directory,
++	l'e-mail e tutti i file appartenenti all'utente nelle i-bay.
++        ]]>
++      </trans>
++    </entry>
++    <entry>
++      <base>CURRENT_USAGE_AND_SETTINGS</base>
++      <trans>Situazione e Impostazioni Quota</trans>
++    </entry>
++    <entry>
++      <base>ACCOUNT</base>
++      <trans>Account</trans>
++    </entry>
++    <entry>
++      <base>USER_NAME</base>
++      <trans>Nome utente</trans>
++    </entry>
++    <entry>
++      <base>LIMIT_WITH_GRACE</base>
++      <trans>Limite di avvertimento</trans>
++    </entry>
++    <entry>
++      <base>LIMIT_WITH_GRACE_MB</base>
++      <trans>Limite di avvertimento (MB)</trans>
++    </entry>
++    <entry>
++      <base>ABS_LIMIT</base>
++      <trans>Limite assoluto</trans>
++    </entry>
++    <entry>
++      <base>ABS_LIMIT_MB</base>
++      <trans>Limite assoluto (MB)</trans>
++    </entry>
++    <entry>
++      <base>CURRENT_USAGE</base>
++      <trans>Spazio utilizzato (MB)</trans>
++    </entry>
++    <entry>
++      <base>COULD_NOT_GET_UID</base>
++      <trans>Impossibile determinare l'uid per l'utente: </trans>
++    </entry>
++    <entry>
++      <base>ERR_NO_SUCH_ACCT</base>
++      <trans>Errore: non esiste l'account: </trans>
++    </entry>
++    <entry>
++      <base>ERR_NOT_A_USER_ACCT</base>
++      <trans>Errore: l'account non è un utente: </trans>
++    </entry>
++    <entry>
++      <base>ACCOUNT_IS_TYPE</base>
++      <trans>E' un account di tipo: </trans>
++    </entry>
++    <entry>
++      <base>MODIFY_USER_TITLE</base>
++      <trans>Modifica limiti quota utente</trans>
++    </entry>
++    <entry>
++      <base>ACTION</base>
++      <trans>Azione</trans>
++    </entry>
++    <entry>
++      <base>USER</base>
++      <trans>L'utente: </trans>
++    </entry>
++    <entry>
++      <base>CURRENTLY_HAS</base>
++      <trans>attualmente ha: </trans>
++    </entry>
++    <entry>
++      <base>OCCUPYING</base>
++      <trans>che occupano: </trans>
++    </entry>
++    <entry>
++      <base>MEGABYTES</base>
++      <trans>megabyte</trans>
++    </entry>
++    <entry>
++      <base>INSTRUCTIONS</base>
++      <trans>
++        Inserire la quota come un intero con un suffisso opzionale di 'K' per
++	kilobyte, 'M' per megabyte e 'G' per gigabyte. Senza suffisso si
++	intende megabyte. Il valore '0' per uno dei limiti disabilita quel limite per
++	l'utente corrispondente.
++      </trans>
++    </entry>
++    <entry>
++      <base>MODIFY</base>
++      <trans>Modifica</trans>
++    </entry>
++    <entry>
++      <base>SAVE</base>
++      <trans>Salva</trans>
++    </entry>
++    <entry>
++      <base>SOFT_VAL_MUST_BE_INTEGER</base>
++      <trans>Errore: il limite di avvertimento deve essere un intero,
++      opzionalmente seguito da una dei suffissi K, M o G.</trans>
++    </entry>
++    <entry>
++      <base>HARD_VAL_MUST_BE_INTEGER</base>
++      <trans>Errore: il limite assoluto deve essere un intero,
++      opzionalmente seguito da una dei suffissi K, M o G.</trans>
++    </entry>
++    <entry>
++      <base>ERR_HARD_LT_SOFT</base>
++      <trans>
++        Errore: il limite assoluto deve essere maggiore o uguale del limite 
++        di avvertimento. 
++      </trans>
++    </entry>
++    <entry>
++      <base>ERR_MODIFYING</base>
++      <trans>Errore durante la modifica dell'utente.</trans>
++    </entry>
++    <entry>
++      <base>SUCCESSFULLY_MODIFIED</base>
++      <trans>Quota modificata con successo per l'utente: </trans>
++    </entry>
++
++    <entry>
++	<base>Collaboration</base>
++	<trans>Collaborazione</trans>
++    </entry>
++
++    <entry>
++	<base>Quotas</base>
++	<trans>Quota</trans>
++    </entry>
++</lexicon>
++

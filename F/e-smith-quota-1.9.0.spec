@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - quota module
 %define name e-smith-quota
 Name: %{name}
 %define version 1.9.0
-%define release 11
+%define release 14
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -16,6 +16,9 @@ Patch4: e-smith-quota-1.9.0-06.mitel_patch
 Patch5: e-smith-quota-1.9.0-07.mitel_patch
 Patch6: e-smith-quota-1.9.0-10.mitel_patch
 Patch7: e-smith-quota-1.9.0-11.mitel_patch
+Patch8: e-smith-quota-1.9.0-12.mitel_patch
+Patch9: e-smith-quota-1.9.0-13.mitel_patch
+Patch10: e-smith-quota-1.9.0-14.mitel_patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -28,6 +31,18 @@ AutoReqProv: no
 e-smith server and gateway software - quota module.
 
 %changelog
+* Tue Oct  4 2005 Charlie Brady <charlieb@e-smith.com>
+- [1.9.0-14]
+- Fix L10N in over-quota warning messages. [SF: 1312830]
+
+* Fri Sep 30 2005 Gordon Rowell <gordonr@e-smith.com>
+- [1.9.0-13]
+- Added Italian L10N - Thanks Filippo Carletti [SF: 1309266]
+
+* Mon Sep 26 2005 Gordon Rowell <gordonr@e-smith.com>
+- [1.9.0-12]
+- Added German L10N - Thanks Dietmar Berteld [SF: 1293325]
+
 * Tue Jul 19 2005 Charlie Brady <charlieb@e-smith.com>
 - [1.9.0-11]
 - Update to current db access APIs (patches by Shad and Charlie) [SF: 1216546]
@@ -407,6 +422,9 @@ e-smith server and gateway software - quota module.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
+%patch9 -p1
+%patch10 -p1
 
 %build
 mkdir -p root/etc/e-smith/events/post-{install,upgrade}

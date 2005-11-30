@@ -1,0 +1,12 @@
+Index: e-smith-quota/e-smith-quota.spec
+diff -u e-smith-quota/root/etc/e-smith/templates/usr/lib/e-smith-quota/adminQuotaSummary.tmpl:1.11 e-smith-quota/root/etc/e-smith/templates/usr/lib/e-smith-quota/adminQuotaSummary.tmpl:1.12
+--- e-smith-quota/root/etc/e-smith/templates/usr/lib/e-smith-quota/adminQuotaSummary.tmpl:1.11	Wed Oct 19 21:36:20 2005
++++ e-smith-quota/root/etc/e-smith/templates/usr/lib/e-smith-quota/adminQuotaSummary.tmpl	Thu Oct 20 12:25:20 2005
+@@ -22,6 +22,7 @@
+ 
+     $OUT .= gettext("The following users have exceeded their disk quota on the server called").
+ 	    " \"$systemName\" ".gettext("All values are in megabytes.");
++    $OUT .= "\n";
+ 
+     $OUT .= sprintf("%-20s%+8s%+28s%+19s", 
+     		gettext("Account"), 

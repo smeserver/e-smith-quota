@@ -1,0 +1,22 @@
+Index: e-smith-quota/e-smith-quota.spec
+diff -u e-smith-quota/root/sbin/e-smith/warnquota:1.7 e-smith-quota/root/sbin/e-smith/warnquota:1.8
+--- e-smith-quota/root/sbin/e-smith/warnquota:1.7	Tue Jul 19 23:11:14 2005
++++ e-smith-quota/root/sbin/e-smith/warnquota	Tue Oct 18 18:13:06 2005
+@@ -220,7 +220,7 @@
+ 	    || die "Could not send mail via qmail-inject!\n";
+ 
+ 	print QMAIL $t->fill_in( HASH => {
+-	    conf    => $conf,
++	    conf    => \$conf,
+ 	    data   => $usersOverQuota->{$user}
+ 	});
+ 
+@@ -264,7 +264,7 @@
+ 	|| die "Could not send mail via qmail-inject!\n";
+ 
+     print QMAIL $t->fill_in( HASH => {
+-	conf   => $conf,
++	conf   => \$conf,
+ 	usersOverQuota   => $usersOverQuota,
+ 	usersUnderQuota   => $usersUnderQuota
+     });

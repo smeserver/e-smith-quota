@@ -2,12 +2,13 @@ Summary: e-smith server and gateway - quota module
 %define name e-smith-quota
 Name: %{name}
 %define version 1.10.0
-%define release 01
+%define release 02
 Version: %{version}
 Release: %{release}
 License: GPL
 Group: System Environment/Base
 Source: %{name}-%{version}.tar.gz
+Patch0: e-smith-quota-1.10.0.sort.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -20,6 +21,9 @@ AutoReqProv: no
 e-smith server and gateway software - quota module.
 
 %changelog
+* Mon May 01 2006 Charlie Brady <charlie_brady@mitel.com> 1.10.0-02
+- Fix mis-sorting of users in quota table. [SME: 1346]
+
 * Thu Mar 16 2006 Gordon Rowell <gordonr@gormand.com.au> 1.10.0-01
 - Roll stable stream version. [SME: 1016]
 
@@ -430,6 +434,7 @@ e-smith server and gateway software - quota module.
 
 %prep
 %setup
+%patch0 -p1
 
 %build
 mkdir -p root/etc/e-smith/events/post-{install,upgrade}

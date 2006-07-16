@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - quota module
 %define name e-smith-quota
 Name: %{name}
 %define version 1.10.0
-%define release 03
+%define release 04
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -10,6 +10,7 @@ Group: System Environment/Base
 Source: %{name}-%{version}.tar.gz
 Patch0: e-smith-quota-1.10.0.sort.patch
 Patch1: e-smith-quota-1.10.0-UntaintAccountName.patch
+Patch2: e-smith-quota-1.10.0-Limits.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -22,6 +23,10 @@ AutoReqProv: no
 e-smith server and gateway software - quota module.
 
 %changelog
+* Sun Jul 16 2006 Charlie Brady <charlie_brady@mitel.com> 1.10.0-04
+- Fix sanity checking of hard/soft quota values, and fix "no limit" display
+  text (fixes thanks to Robert van den Aker). [SME: 1462]
+
 * Sun Jul 16 2006 Gavin Weight <gweight@gmail.com> 1.10.0-03
 - Fix quota.pm to allow account names with ".". [SME: 1702]
 
@@ -440,6 +445,7 @@ e-smith server and gateway software - quota module.
 %setup
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 mkdir -p root/etc/e-smith/events/post-{install,upgrade}

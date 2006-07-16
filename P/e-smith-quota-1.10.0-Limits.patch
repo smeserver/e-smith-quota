@@ -1,0 +1,50 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-quota-1.10.0/root/etc/e-smith/locale/en-us/etc/e-smith/web/functions/quota mezzanine_patched_e-smith-quota-1.10.0/root/etc/e-smith/locale/en-us/etc/e-smith/web/functions/quota
+--- e-smith-quota-1.10.0/root/etc/e-smith/locale/en-us/etc/e-smith/web/functions/quota	2003-06-24 17:18:03.000000000 -0400
++++ mezzanine_patched_e-smith-quota-1.10.0/root/etc/e-smith/locale/en-us/etc/e-smith/web/functions/quota	2006-07-16 14:15:59.000000000 -0400
+@@ -131,8 +131,7 @@
+     <entry>
+       <base>ERR_HARD_LT_SOFT</base>
+       <trans>
+-        Error: absolute limit must be greater than or equal to limit with
+-        grace time. 
++       Error: absolute limit must be greater than limit with grace time. 
+       </trans>
+     </entry>
+     <entry>
+diff -Nur -x '*.orig' -x '*.rej' e-smith-quota-1.10.0/root/etc/e-smith/templates/usr/lib/e-smith-quota/userOverQuota.tmpl mezzanine_patched_e-smith-quota-1.10.0/root/etc/e-smith/templates/usr/lib/e-smith-quota/userOverQuota.tmpl
+--- e-smith-quota-1.10.0/root/etc/e-smith/templates/usr/lib/e-smith-quota/userOverQuota.tmpl	2006-03-16 01:56:02.000000000 -0500
++++ mezzanine_patched_e-smith-quota-1.10.0/root/etc/e-smith/templates/usr/lib/e-smith-quota/userOverQuota.tmpl	2006-07-16 14:16:35.000000000 -0400
+@@ -19,7 +19,8 @@
+     $OUT .= gettext("Your current disk usage:").
+ 	    " $data{usage} ".gettext("Mb")."\n";
+     $OUT .= gettext("Your maximum usage:").
+-		" $data{hardQuota} ".gettext("Mb")."\n";
++               ($data{hardQuota} == 0 ? gettext(" no limit set") :
++               " $data{hardQuota} ".gettext("Mb"))."\n";
+     $OUT .= gettext("Warnings start at:").
+ 		" $data{softQuota} ".gettext("Mb")."\n";
+     $OUT .= gettext("Grace period ends:")." $gracePeriodEnds\n";
+diff -Nur -x '*.orig' -x '*.rej' e-smith-quota-1.10.0/root/sbin/e-smith/warnquota mezzanine_patched_e-smith-quota-1.10.0/root/sbin/e-smith/warnquota
+--- e-smith-quota-1.10.0/root/sbin/e-smith/warnquota	2006-03-16 01:56:02.000000000 -0500
++++ mezzanine_patched_e-smith-quota-1.10.0/root/sbin/e-smith/warnquota	2006-07-16 14:14:36.000000000 -0400
+@@ -143,7 +143,7 @@
+ 				   gracePeriod => $bt
+ 				 };
+ 	}
+-	elsif ( ($bc > $bh) || ($bc > $bs) )
++       elsif ( (($bc > $bh) && ($bh > 0)) || (($bc > $bs) && ($bs > 0)) )
+ 	{
+ 	    # User is over quota
+ 	    # gracePeriod is 0 if over hard limit
+diff -Nur -x '*.orig' -x '*.rej' e-smith-quota-1.10.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm mezzanine_patched_e-smith-quota-1.10.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm
+--- e-smith-quota-1.10.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm	2006-07-16 14:18:00.000000000 -0400
++++ mezzanine_patched_e-smith-quota-1.10.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm	2006-07-16 14:15:59.000000000 -0400
+@@ -304,7 +304,7 @@
+     # Make sure that soft limit is less than hard limit.
+     #------------------------------------------------------------
+ 
+-    unless ($hardlim == 0 or $hardlim >= $softlim)
++    unless ($hardlim == 0 or $hardlim > $softlim)
+     {
+ 	return $self->error('ERR_HARD_LT_SOFT', 'Initial');
+     }

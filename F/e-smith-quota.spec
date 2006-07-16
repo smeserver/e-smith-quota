@@ -2,13 +2,14 @@ Summary: e-smith server and gateway - quota module
 %define name e-smith-quota
 Name: %{name}
 %define version 1.10.0
-%define release 02
+%define release 03
 Version: %{version}
 Release: %{release}
 License: GPL
 Group: System Environment/Base
 Source: %{name}-%{version}.tar.gz
 Patch0: e-smith-quota-1.10.0.sort.patch
+Patch1: e-smith-quota-1.10.0-UntaintAccountName.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
@@ -21,6 +22,9 @@ AutoReqProv: no
 e-smith server and gateway software - quota module.
 
 %changelog
+* Sun Jul 16 2006 Gavin Weight <gweight@gmail.com> 1.10.0-03
+- Fix quota.pm to allow account names with ".". [SME: 1702]
+
 * Mon May 01 2006 Charlie Brady <charlie_brady@mitel.com> 1.10.0-02
 - Fix mis-sorting of users in quota table. [SME: 1346]
 
@@ -435,6 +439,7 @@ e-smith server and gateway software - quota module.
 %prep
 %setup
 %patch0 -p1
+%patch1 -p1
 
 %build
 mkdir -p root/etc/e-smith/events/post-{install,upgrade}

@@ -2,16 +2,16 @@ Summary: e-smith server and gateway - quota module
 %define name e-smith-quota
 Name: %{name}
 %define version 1.10.0
-%define release 04
+%define release 5
 Version: %{version}
-Release: %{release}
+Release: %smerelease %{release}
+Packager: %{_packager}
 License: GPL
 Group: System Environment/Base
 Source: %{name}-%{version}.tar.gz
 Patch0: e-smith-quota-1.10.0.sort.patch
 Patch1: e-smith-quota-1.10.0-UntaintAccountName.patch
 Patch2: e-smith-quota-1.10.0-Limits.patch
-Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.9.129, quota >= 3, perl-Quota
@@ -23,6 +23,10 @@ AutoReqProv: no
 e-smith server and gateway software - quota module.
 
 %changelog
+* Thu Dec 07 2006 Shad L. Lords <slords@mail.com>
+- Update to new release naming.  No functional changes.
+- Make Packager generic
+
 * Sun Jul 16 2006 Charlie Brady <charlie_brady@mitel.com> 1.10.0-04
 - Fix sanity checking of hard/soft quota values, and fix "no limit" display
   text (fixes thanks to Robert van den Aker). [SME: 1462]

@@ -4,8 +4,7 @@ Name: %{name}
 %define version 1.10.0
 %define release 5
 Version: %{version}
-Release: %smerelease %{release}
-Packager: %{_packager}
+Release: %{release}%{?dist}
 License: GPL
 Group: System Environment/Base
 Source: %{name}-%{version}.tar.gz
@@ -17,12 +16,16 @@ BuildArchitectures: noarch
 Requires: e-smith-base >= 4.9.129, quota >= 3, perl-Quota
 Requires: e-smith-lib >= 1.13.1
 BuildRequires: e-smith-devtools >= 1.11.0-03, e-smith-test >= 0.1.12
+BuildRequires: gettext
 AutoReqProv: no
 
 %description
 e-smith server and gateway software - quota module.
 
 %changelog
+* Sun Apr 29 2007 Shad L. Lords <slords@mail.com>
+- Clean up spec so package can be built by koji/plague
+
 * Thu Dec 07 2006 Shad L. Lords <slords@mail.com>
 - Update to new release naming.  No functional changes.
 - Make Packager generic

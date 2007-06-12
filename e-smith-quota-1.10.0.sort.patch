@@ -1,0 +1,12 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-quota-1.10.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm mezzanine_patched_e-smith-quota-1.10.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm
+--- e-smith-quota-1.10.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm	2005-03-10 19:17:49.000000000 -0500
++++ mezzanine_patched_e-smith-quota-1.10.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm	2006-05-01 10:58:20.000000000 -0400
+@@ -89,7 +89,7 @@
+     my $adb = esmith::AccountsDB->open() 
+ 	|| die $self->localise("UNABLE_TO_OPEN_ACCOUNTS");
+ 
+-    my @userAccounts = sort $adb->users;
++    my @userAccounts = $adb->users;
+ 
+     unless (scalar @userAccounts)
+     {

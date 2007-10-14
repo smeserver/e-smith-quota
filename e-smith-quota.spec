@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - quota module
 %define name e-smith-quota
 Name: %{name}
 %define version 1.10.0
-%define release 5
+%define release 6
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -15,7 +15,7 @@ BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.9.129, quota >= 3, perl-Quota
 Requires: e-smith-lib >= 1.13.1
-BuildRequires: e-smith-devtools >= 1.11.0-03, e-smith-test >= 0.1.12
+BuildRequires: e-smith-devtools >= 1.11.0-03
 BuildRequires: gettext
 AutoReqProv: no
 
@@ -23,6 +23,9 @@ AutoReqProv: no
 e-smith server and gateway software - quota module.
 
 %changelog
+* Sun Apr 29 2007 Shad L. Lords <slords@mail.com> 1.10.0-6
+- Remove unnecessary build dependency
+
 * Sun Apr 29 2007 Shad L. Lords <slords@mail.com>
 - Clean up spec so package can be built by koji/plague
 

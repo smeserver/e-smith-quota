@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - quota module
 %define name e-smith-quota
 Name: %{name}
 %define version 1.10.0
-%define release 6
+%define release 7
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -11,6 +11,7 @@ Source: %{name}-%{version}.tar.gz
 Patch0: e-smith-quota-1.10.0.sort.patch
 Patch1: e-smith-quota-1.10.0-UntaintAccountName.patch
 Patch2: e-smith-quota-1.10.0-Limits.patch
+Patch3: e-smith-quota-1.10.0-multipartquota.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.9.129, quota >= 3, perl-Quota
@@ -23,6 +24,9 @@ AutoReqProv: no
 e-smith server and gateway software - quota module.
 
 %changelog
+* Mon Dec 17 2007 Shad L. Lords <slords@mail.com> 1.10.0-7
+- Enable quotas for all lvm partitions [SME: 3651]
+
 * Sun Oct 14 2007 Shad L. Lords <slords@mail.com> 1.10.0-6
 - Remove unnecessary build dependency [SME: 3534]
 
@@ -456,6 +460,7 @@ e-smith server and gateway software - quota module.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 mkdir -p root/etc/e-smith/events/post-{install,upgrade}

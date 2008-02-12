@@ -1,0 +1,12 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-quota-1.10.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm mezzanine_patched_e-smith-quota-1.10.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm
+--- e-smith-quota-1.10.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm	2008-02-12 14:10:11.000000000 +1100
++++ mezzanine_patched_e-smith-quota-1.10.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm	2008-02-12 14:06:08.000000000 +1100
+@@ -318,7 +318,7 @@
+     $rec->set_prop('MaxBlocksSoftLim', $softlim);
+ 
+     # Untaint $acct before using in system().
+-    $acct =~ /^(\w[\-\w_\.]+)$/; $acct = $1;
++    $acct =~ /^(\w[\-\w_\.]*)$/; $acct = $1;
+     system ("/sbin/e-smith/signal-event", "user-modify", "$acct") == 0
+         or die ($self->localise('ERR_MODIFYING')."\n");
+ 

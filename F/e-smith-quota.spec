@@ -478,10 +478,10 @@ mkdir -p root/etc/e-smith/events/post-{install,upgrade}
 mkdir -p root/etc/e-smith/events/user-{create,modify}
 mkdir -p root/etc/e-smith/web/panels/manager/cgi-bin
 
-xgettext -o root/usr/share/locale/en_US/LC_MESSAGES/adminQuotaSummary.po \
-    root/etc/e-smith/templates/usr/lib/e-smith-quota/adminQuotaSummary.tmpl
-xgettext -o root/usr/share/locale/en_US/LC_MESSAGES/userOverQuota.po \
-    root/etc/e-smith/templates/usr/lib/e-smith-quota/userOverQuota.tmpl
+xgettext -o root/usr/share/locale/en_US/LC_MESSAGES/adminQuotaSummary.tmpl.po \
+    root/etc/e-smith/templates/usr/lib/e-smith-quota/adminQuotaSummary.tmpl -L perl
+xgettext -o root/usr/share/locale/en_US/LC_MESSAGES/userOverQuota.tmpl.po \
+    root/etc/e-smith/templates/usr/lib/e-smith-quota/userOverQuota.tmpl -L perl
 
 perl createlinks
 /sbin/e-smith/buildtests 50-e-smith-quota

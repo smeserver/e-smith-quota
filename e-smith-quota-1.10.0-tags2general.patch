@@ -1,0 +1,53 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-quota-1.10.0/root/etc/e-smith/locale/en-us/etc/e-smith/web/functions/quota mezzanine_patched_e-smith-quota-1.10.0/root/etc/e-smith/locale/en-us/etc/e-smith/web/functions/quota
+--- e-smith-quota-1.10.0/root/etc/e-smith/locale/en-us/etc/e-smith/web/functions/quota	2008-02-13 21:39:33.000000000 +1100
++++ mezzanine_patched_e-smith-quota-1.10.0/root/etc/e-smith/locale/en-us/etc/e-smith/web/functions/quota	2008-02-13 21:37:26.000000000 +1100
+@@ -36,10 +36,6 @@
+       <trans>Current Quota Usage and Settings</trans>
+     </entry>
+     <entry>
+-      <base>ACCOUNT</base>
+-      <trans>Account</trans>
+-    </entry>
+-    <entry>
+       <base>USER_NAME</base>
+       <trans>User name</trans>
+     </entry>
+@@ -84,10 +80,6 @@
+       <trans>Modify user quota limits</trans>
+     </entry>
+     <entry>
+-      <base>ACTION</base>
+-      <trans>Action</trans>
+-    </entry>
+-    <entry>
+       <base>USER</base>
+       <trans>User: </trans>
+     </entry>
+@@ -113,14 +105,6 @@
+       </trans>
+     </entry>
+     <entry>
+-      <base>MODIFY</base>
+-      <trans>Modify</trans>
+-    </entry>
+-    <entry>
+-      <base>SAVE</base>
+-      <trans>Save</trans>
+-    </entry>
+-    <entry>
+       <base>SOFT_VAL_MUST_BE_INTEGER</base>
+       <trans>Error: limit with grace period must be an integer, optionally followed by one of the unit suffixes K, M, or G.</trans>
+     </entry>
+@@ -142,12 +126,6 @@
+       <base>SUCCESSFULLY_MODIFIED</base>
+       <trans>Successfully modified quota for user account: </trans>
+     </entry>
+-
+-    <entry>
+-	<base>Collaboration</base>
+-	<trans>Collaboration</trans>
+-    </entry>
+-
+     <entry>
+ 	<base>Quotas</base>
+ 	<trans>Quotas</trans>

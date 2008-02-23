@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - quota module
 %define name e-smith-quota
 Name: %{name}
 %define version 1.10.0
-%define release 8
+%define release 9
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -13,10 +13,12 @@ Patch1: e-smith-quota-1.10.0-UntaintAccountName.patch
 Patch2: e-smith-quota-1.10.0-Limits.patch
 Patch3: e-smith-quota-1.10.0-multipartquota.patch
 Patch4: e-smith-quota-1.10.0-Untaint-acct-before-using-in-system.patch
+Patch5: e-smith-quota-1.10.0-tags2general.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.9.129, quota >= 3, perl-Quota
 Requires: e-smith-lib >= 1.13.1
+Requires: e-smith-formmagick >= 1.4.0-9
 BuildRequires: e-smith-devtools >= 1.11.0-03
 BuildRequires: gettext
 AutoReqProv: no
@@ -25,9 +27,11 @@ AutoReqProv: no
 e-smith server and gateway software - quota module.
 
 %changelog
+* Wed Feb 13 2008 Stephen Noble <support@dungog.net> 1.10.0-9
+- Remove <base> tags now in general [SME: 3927]
+
 * Tue Feb 12 2008 chris burnat <devlist@burnat.com> 1.10.0-8
--  Fix deletion of usernames with one character 
-- [SME: 2451]
+-  Fix deletion of usernames with one character [SME: 2451]
 
 * Mon Dec 17 2007 Shad L. Lords <slords@mail.com> 1.10.0-7
 - Enable quotas for all lvm partitions [SME: 3651]
@@ -467,16 +471,17 @@ e-smith server and gateway software - quota module.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 mkdir -p root/etc/e-smith/events/post-{install,upgrade}
 mkdir -p root/etc/e-smith/events/user-{create,modify}
 mkdir -p root/etc/e-smith/web/panels/manager/cgi-bin
 
-xgettext -o root/usr/share/locale/en_US/LC_MESSAGES/adminQuotaSummary.po \
-    root/etc/e-smith/templates/usr/lib/e-smith-quota/adminQuotaSummary.tmpl
-xgettext -o root/usr/share/locale/en_US/LC_MESSAGES/userOverQuota.po \
-    root/etc/e-smith/templates/usr/lib/e-smith-quota/userOverQuota.tmpl
+xgettext -o root/usr/share/locale/en_US/LC_MESSAGES/adminQuotaSummary.tmpl.po \
+    root/etc/e-smith/templates/usr/lib/e-smith-quota/adminQuotaSummary.tmpl -L perl
+xgettext -o root/usr/share/locale/en_US/LC_MESSAGES/userOverQuota.tmpl.po \
+    root/etc/e-smith/templates/usr/lib/e-smith-quota/userOverQuota.tmpl -L perl
 
 perl createlinks
 /sbin/e-smith/buildtests 50-e-smith-quota

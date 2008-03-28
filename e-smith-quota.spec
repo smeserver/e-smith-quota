@@ -2,7 +2,7 @@ Summary: e-smith server and gateway - quota module
 %define name e-smith-quota
 Name: %{name}
 %define version 1.10.0
-%define release 9
+%define release 10
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -14,6 +14,7 @@ Patch2: e-smith-quota-1.10.0-Limits.patch
 Patch3: e-smith-quota-1.10.0-multipartquota.patch
 Patch4: e-smith-quota-1.10.0-Untaint-acct-before-using-in-system.patch
 Patch5: e-smith-quota-1.10.0-tags2general.patch
+Patch6: e-smith-quota-1.10.0-files.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.9.129, quota >= 3, perl-Quota
@@ -27,6 +28,9 @@ AutoReqProv: no
 e-smith server and gateway software - quota module.
 
 %changelog
+* Fri Mar 28 2008 Stephen Noble <support@dungog.net> 1.10.0-10
+- Add spacing and localise 'files' [SME: 4133]
+
 * Wed Feb 13 2008 Stephen Noble <support@dungog.net> 1.10.0-9
 - Remove <base> tags now in general [SME: 3927]
 
@@ -472,6 +476,7 @@ e-smith server and gateway software - quota module.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %build
 mkdir -p root/etc/e-smith/events/post-{install,upgrade}

@@ -1,0 +1,31 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-quota-1.10.0/root/etc/e-smith/locale/en-us/etc/e-smith/web/functions/quota mezzanine_patched_e-smith-quota-1.10.0/root/etc/e-smith/locale/en-us/etc/e-smith/web/functions/quota
+--- e-smith-quota-1.10.0/root/etc/e-smith/locale/en-us/etc/e-smith/web/functions/quota	2008-03-28 21:31:05.000000000 +1100
++++ mezzanine_patched_e-smith-quota-1.10.0/root/etc/e-smith/locale/en-us/etc/e-smith/web/functions/quota	2008-03-28 21:13:20.000000000 +1100
+@@ -88,6 +88,10 @@
+       <trans>currently has: </trans>
+     </entry>
+     <entry>
++      <base>FILES</base>
++      <trans>files</trans>
++    </entry>
++    <entry>
+       <base>OCCUPYING</base>
+       <trans>occupying: </trans>
+     </entry>
+diff -Nur -x '*.orig' -x '*.rej' e-smith-quota-1.10.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm mezzanine_patched_e-smith-quota-1.10.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm
+--- e-smith-quota-1.10.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm	2008-03-28 21:31:05.000000000 +1100
++++ mezzanine_patched_e-smith-quota-1.10.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm	2008-03-28 21:26:08.000000000 +1100
+@@ -192,9 +192,10 @@
+ 		Quota::query($dev, $uid);
+ 
+     print
+-	$q->p($self->localise('USER')."$name (\"$acct\") ".
+-	$self->localise('CURRENTLY_HAS')."$ic files ".
+-	$self->localise('OCCUPYING').$self->toMB($bc)." ".
++	$q->p($self->localise('USER')." $name (\"$acct\") ".
++	$self->localise('CURRENTLY_HAS')." $ic ".
++        $self->localise('FILES')." ".
++	$self->localise('OCCUPYING')." ". $self->toMB($bc) ." ".
+ 	$self->localise('MEGABYTES'));
+ 
+     print

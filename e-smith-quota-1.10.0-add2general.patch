@@ -1,0 +1,37 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-quota-1.10.0/root/etc/e-smith/locale/en-us/etc/e-smith/web/functions/quota mezzanine_patched_e-smith-quota-1.10.0/root/etc/e-smith/locale/en-us/etc/e-smith/web/functions/quota
+--- e-smith-quota-1.10.0/root/etc/e-smith/locale/en-us/etc/e-smith/web/functions/quota	2008-04-27 11:02:28.000000000 +0200
++++ mezzanine_patched_e-smith-quota-1.10.0/root/etc/e-smith/locale/en-us/etc/e-smith/web/functions/quota	2008-04-27 11:00:42.000000000 +0200
+@@ -8,10 +8,6 @@
+       <trans>Unable to open accounts db</trans>
+     </entry>
+     <entry>
+-      <base>NO_ACCOUNTS</base>
+-      <trans>There are no user accounts in the system.</trans>
+-    </entry>
+-    <entry>
+       <base>QUOTA_DESC</base>
+       <trans>
+         <![CDATA[
+@@ -36,10 +32,6 @@
+       <trans>Current Quota Usage and Settings</trans>
+     </entry>
+     <entry>
+-      <base>USER_NAME</base>
+-      <trans>User name</trans>
+-    </entry>
+-    <entry>
+       <base>LIMIT_WITH_GRACE</base>
+       <trans>Limit with grace period</trans>
+     </entry>
+diff -Nur -x '*.orig' -x '*.rej' e-smith-quota-1.10.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm mezzanine_patched_e-smith-quota-1.10.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm
+--- e-smith-quota-1.10.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm	2008-04-27 11:02:28.000000000 +0200
++++ mezzanine_patched_e-smith-quota-1.10.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm	2008-04-27 11:01:40.000000000 +0200
+@@ -93,7 +93,7 @@
+ 
+     unless (scalar @userAccounts)
+     {
+-	print $q->h3 ($self->localise('NO_ACCOUNTS'));
++	print $q->h3 ($self->localise('ACCOUNT_USER_NONE'));
+     }
+     else
+     {

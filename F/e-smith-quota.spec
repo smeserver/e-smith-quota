@@ -15,7 +15,7 @@ Patch3: e-smith-quota-1.10.0-multipartquota.patch
 Patch4: e-smith-quota-1.10.0-Untaint-acct-before-using-in-system.patch
 Patch5: e-smith-quota-1.10.0-tags2general.patch
 Patch6: e-smith-quota-1.10.0-files.patch
-Patch7: e-smith-quota-1.10.0-add2general
+Patch7: e-smith-quota-1.10.0-add2general.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.9.129, quota >= 3, perl-Quota

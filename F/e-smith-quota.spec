@@ -30,7 +30,7 @@ e-smith server and gateway software - quota module.
 
 %changelog
 * Sun Apr 27 2008 Jonathan Martens <smeserver-contribs@snetram.nl> 1.10.0-11
-- Add common <base> tags to e-smith-formmagick's general
+- Add common <base> tags to e-smith-formmagick's general [SME: 4284]
 
 * Fri Mar 28 2008 Stephen Noble <support@dungog.net> 1.10.0-10
 - Add spacing and localise 'files' [SME: 4133]

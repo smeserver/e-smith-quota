@@ -20,7 +20,7 @@ BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.9.129, quota >= 3, perl-Quota
 Requires: e-smith-lib >= 1.13.1
-Requires: e-smith-formmagick >= 1.4.0-9
+Requires: e-smith-formmagick >= 1.4.0-12
 BuildRequires: e-smith-devtools >= 1.11.0-03
 BuildRequires: gettext
 AutoReqProv: no

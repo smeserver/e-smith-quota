@@ -1,15 +1,16 @@
-# $Id: e-smith-quota.spec,v 1.10 2008/10/07 19:17:26 slords Exp $
+# $Id: e-smith-quota.spec,v 1.11 2009/04/13 11:28:58 bytegw Exp $
 
 Summary: e-smith server and gateway - quota module
 %define name e-smith-quota
 Name: %{name}
 %define version 2.2.0
-%define release 1
+%define release 2
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
 Group: System Environment/Base
 Source: %{name}-%{version}.tar.gz
+Patch0: e-smith-quota-2.2.0-RemoveMountProcLine.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.9.129, quota >= 3, perl-Quota
@@ -23,6 +24,9 @@ AutoReqProv: no
 e-smith server and gateway software - quota module.
 
 %changelog
+* Mon Apr 13 2009 Gavin Weight <gweight@gmail.com> 2.2.0-2.sme
+- Remove unnecessary Mount Proc line. [SME: 4112]
+
 * Tue Oct 7 2008 Shad L. Lords <slords@mail.com> 2.2.0-1.sme
 - Roll new stream to separate sme7/sme8 trees [SME: 4633]
 
@@ -471,6 +475,7 @@ e-smith server and gateway software - quota module.
 
 %prep
 %setup
+%patch0 -p1
 
 %build
 mkdir -p root/etc/e-smith/events/post-{install,upgrade}

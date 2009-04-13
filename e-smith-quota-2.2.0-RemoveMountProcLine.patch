@@ -1,0 +1,10 @@
+--- e-smith-quota-2.2.0/root/etc/rc.d/rc.quota_create.RemoveMountProcLine	2004-12-29 22:03:48.000000000 +0000
++++ e-smith-quota-2.2.0/root/etc/rc.d/rc.quota_create	2009-04-13 12:23:27.000000000 +0100
+@@ -5,7 +5,6 @@
+ 
+ . /etc/init.d/functions
+ 
+-action $"Mounting /proc file system: " mount -n -t proc /proc /proc
+ if test -f /quota.user
+ then
+     action $"Converting old user quota files: " \

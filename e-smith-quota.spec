@@ -1,4 +1,4 @@
-# $Id: e-smith-quota.spec,v 1.12 2010/04/28 20:33:23 wellsi Exp $
+# $Id: e-smith-quota.spec,v 1.13 2010/04/28 20:46:17 wellsi Exp $
 
 Summary: e-smith server and gateway - quota module
 %define name e-smith-quota
@@ -25,7 +25,7 @@ AutoReqProv: no
 e-smith server and gateway software - quota module.
 
 %changelog
-* Wed Apr 28 2010 Ian Wells <esmith@wellsi.com> 2.0.0-3.sme
+* Wed Apr 28 2010 Ian Wells <esmith@wellsi.com> 2.2.0-3.sme
 - Improve the HTML formatting of the modify quota panel [SME: 5867]
 
 * Mon Apr 13 2009 Gavin Weight <gweight@gmail.com> 2.2.0-2.sme

@@ -1,15 +1,16 @@
-# $Id: e-smith-quota.spec,v 1.10 2008/10/07 19:17:26 slords Exp $
+# $Id: e-smith-quota.spec,v 1.11 2010/04/28 19:36:20 wellsi Exp $
 
 Summary: e-smith server and gateway - quota module
 %define name e-smith-quota
 Name: %{name}
 %define version 2.0.0
-%define release 1
+%define release 2
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
 Group: System Environment/Base
 Source: %{name}-%{version}.tar.gz
+Patch1: e-smith-quota-2.0.0-badly-formmatted-html.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.9.129, quota >= 3, perl-Quota
@@ -23,6 +24,9 @@ AutoReqProv: no
 e-smith server and gateway software - quota module.
 
 %changelog
+* Wed Apr 28 2010 Ian Wells <esmith@wellsi.com> 2.0.0-2.sme
+- Improve the HTML formatting of the modify quota panel [SME: 5903]
+
 * Tue Oct 7 2008 Shad L. Lords <slords@mail.com> 2.0.0-1.sme
 - Roll new stream to separate sme7/sme8 trees [SME: 4633]
 
@@ -471,6 +475,7 @@ e-smith server and gateway software - quota module.
 
 %prep
 %setup
+%patch1 -p1
 
 %build
 mkdir -p root/etc/e-smith/events/post-{install,upgrade}

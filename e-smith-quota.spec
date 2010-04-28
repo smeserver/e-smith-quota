@@ -1,16 +1,17 @@
-# $Id: e-smith-quota.spec,v 1.11 2009/04/13 11:28:58 bytegw Exp $
+# $Id: e-smith-quota.spec,v 1.12 2010/04/28 20:33:23 wellsi Exp $
 
 Summary: e-smith server and gateway - quota module
 %define name e-smith-quota
 Name: %{name}
 %define version 2.2.0
-%define release 2
+%define release 3
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
 Group: System Environment/Base
 Source: %{name}-%{version}.tar.gz
 Patch0: e-smith-quota-2.2.0-RemoveMountProcLine.patch
+Patch1: e-smith-quota-2.2.0-badly-formmatted-html.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.9.129, quota >= 3, perl-Quota
@@ -24,6 +25,9 @@ AutoReqProv: no
 e-smith server and gateway software - quota module.
 
 %changelog
+* Wed Apr 28 2010 Ian Wells <esmith@wellsi.com> 2.0.0-3.sme
+- Improve the HTML formatting of the modify quota panel [SME: 5867]
+
 * Mon Apr 13 2009 Gavin Weight <gweight@gmail.com> 2.2.0-2.sme
 - Remove unnecessary Mount Proc line. [SME: 4112]
 
@@ -476,6 +480,7 @@ e-smith server and gateway software - quota module.
 %prep
 %setup
 %patch0 -p1
+%patch1 -p1
 
 %build
 mkdir -p root/etc/e-smith/events/post-{install,upgrade}

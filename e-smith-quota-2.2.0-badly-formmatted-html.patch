@@ -1,0 +1,18 @@
+--- e-smith-quota-2.2.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm.badly-formmatted-html.patch	2008-10-07 18:37:14.000000000 +0100
++++ e-smith-quota-2.2.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm	2010-04-28 21:03:46.000000000 +0100
+@@ -190,6 +190,7 @@
+     my $dev = Quota::getqcarg('/home/e-smith/files');
+     my ($bc, $bs, $bh, $bt, $ic, $is, $ih, $it) =
+ 		Quota::query($dev, $uid);
++    print '<tr><td>';
+ 
+     print
+ 	$q->p($self->localise('USER')." $name (\"$acct\") ".
+@@ -217,6 +218,7 @@
+ 				       -override => 1,
+ 				       -default  => $self->toBestUnit($bh),
+ 				       -size     => 12))));
++    print '</td></tr>';
+     return '';
+ }
+ 

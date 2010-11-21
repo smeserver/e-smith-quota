@@ -1,10 +1,10 @@
-# $Id: e-smith-quota.spec,v 1.14 2010/11/05 03:58:45 slords Exp $
+# $Id: e-smith-quota.spec,v 1.15 2010/11/21 15:29:41 wellsi Exp $
 
 Summary: e-smith server and gateway - quota module
 %define name e-smith-quota
 Name: %{name}
 %define version 2.2.0
-%define release 4
+%define release 5
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -26,8 +26,11 @@ AutoReqProv: no
 e-smith server and gateway software - quota module.
 
 %changelog
+* Sun Nov 21 2010 Ian Wells <esmith@wellsi.com> 2.2.0-5.sme
+- SME 8.0 Changelog Cleanup [SME: 6368]
+
 * Thu Nov 4 2010 Shad L. Lords <slords@mail.com> 2.2.0-4.sme
-- Enable quotas on ext4 filesystems as well [SME: 5454]
+- Enable quotas on ext4 filesystems as well [SME: 6309]
 
 * Wed Apr 28 2010 Ian Wells <esmith@wellsi.com> 2.2.0-3.sme
 - Improve the HTML formatting of the modify quota panel [SME: 5867]

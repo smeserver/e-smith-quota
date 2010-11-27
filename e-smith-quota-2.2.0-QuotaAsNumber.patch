@@ -70,7 +70,7 @@ diff -ruN e-smith-quota-2.2.0.old/root/usr/lib/perl5/site_perl/esmith/FormMagick
 +   my $exponent = 1; # Entries with no suffix are assumed to be in megabytes.
 +   if (defined ($2)) 
 +   { 
-+   	$exponent = index("KMGT",$2);
++   	$exponent = index("kmgt",lc($2));
 +   }   
 +   $softlim = ($value * 1024 ** $exponent);
  
@@ -102,7 +102,7 @@ diff -ruN e-smith-quota-2.2.0.old/root/usr/lib/perl5/site_perl/esmith/FormMagick
 +   my $exponent = 1; # Entries with no suffix are assumed to be in megabytes.
 +   if (defined ($2)) 
 +   { 
-+   	$exponent = index("KMGT",$2);
++   	$exponent = index("kmgt",lc($2));
 +   }   
 +   $hardlim = ($value * 1024 ** $exponent);
  

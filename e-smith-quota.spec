@@ -1,10 +1,10 @@
-# $Id: e-smith-quota.spec,v 1.16 2010/11/27 10:23:51 wellsi Exp $
+# $Id: e-smith-quota.spec,v 1.17 2010/11/27 20:48:00 wellsi Exp $
 
 Summary: e-smith server and gateway - quota module
 %define name e-smith-quota
 Name: %{name}
 %define version 2.2.0
-%define release 6
+%define release 7
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -27,6 +27,9 @@ AutoReqProv: no
 e-smith server and gateway software - quota module.
 
 %changelog
+* Sat Nov 27 2010 Ian Wells <esmith@wellsi.com> 2.2.0-7.sme
+- Correction to allow units in upper and lower case [SME: 5248]
+
 * Sat Nov 27 2010 Ian Wells <esmith@wellsi.com> 2.2.0-6.sme
 - Allow non-integers in Quota [SME: 5248]
 

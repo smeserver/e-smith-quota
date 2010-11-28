@@ -1,0 +1,48 @@
+diff -ruN e-smith-quota-2.2.0.old/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm e-smith-quota-2.2.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm
+--- e-smith-quota-2.2.0.old/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm	2010-11-28 09:03:23.000000000 +0000
++++ e-smith-quota-2.2.0/root/usr/lib/perl5/site_perl/esmith/FormMagick/Panel/quota.pm	2010-11-28 09:07:13.000000000 +0000
+@@ -268,38 +268,28 @@
+     }
+     my $softlim = $q->param ('soft');
+ 
+-    unless ($softlim =~ /^(.+?)\s*([kmgt])?$/i )
++    if (($softlim !~ /^(.+?)\s*([KMGT])?$/ ) || (!looks_like_number ($1)))
+     {
+ 	return $self->error('SOFT_VAL_MUST_BE_NUMBER', 'Initial');
+     }
+-   my $value = $1;
+-   unless (looks_like_number($value))
+-   {
+-	return $self->error('SOFT_VAL_MUST_BE_NUMBER', 'Initial');
+-   }    
+    my $exponent = 1; # Entries with no suffix are assumed to be in megabytes.
+    if (defined ($2)) 
+    { 
+-   	$exponent = index("kmgt",lc($2));
++   	$exponent = index("KMGT",$2);
+    }   
+-   $softlim = ($value * 1024 ** $exponent);
++   $softlim = ($1 * 1024 ** $exponent);
+ 
+     my $hardlim = $q->param ('hard');
+-    unless ($hardlim =~ /^(.+?)\s*([kmgt])?$/i )
++    if (($hardlim !~ /^(.+?)\s*([KMGT])?$/ ) || (!looks_like_number ($1)))
+     {
+ 	return $self->error('HARD_VAL_MUST_BE_NUMBER', 'Initial');
+     }
+-   my $value = $1;
+-   unless (looks_like_number($value))
+-   {
+-	return $self->error('HARD_VAL_MUST_BE_NUMBER', 'Initial');
+-   } 
+    my $exponent = 1; # Entries with no suffix are assumed to be in megabytes.
+    if (defined ($2)) 
+    { 
+-   	$exponent = index("kmgt",lc($2));
++   	$exponent = index("KMGT",$2);
+    }   
+-   $hardlim = ($value * 1024 ** $exponent);
++   $hardlim = ($1 * 1024 ** $exponent);
+ 
+     #------------------------------------------------------------
+     # Make sure that soft limit is less than hard limit.

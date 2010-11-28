@@ -1,10 +1,10 @@
-# $Id: e-smith-quota.spec,v 1.17 2010/11/27 20:48:00 wellsi Exp $
+# $Id: e-smith-quota.spec,v 1.18 2010/11/28 09:20:53 wellsi Exp $
 
 Summary: e-smith server and gateway - quota module
 %define name e-smith-quota
 Name: %{name}
 %define version 2.2.0
-%define release 7
+%define release 8
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -14,6 +14,7 @@ Patch0: e-smith-quota-2.2.0-RemoveMountProcLine.patch
 Patch1: e-smith-quota-2.2.0-badly-formmatted-html.patch
 Patch2: e-smith-quota-2.2.0-ext4.patch
 Patch3: e-smith-quota-2.2.0-QuotaAsNumber.patch
+Patch4: e-smith-quota-2.2.0-UpperCaseUnits.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildArchitectures: noarch
 Requires: e-smith-base >= 4.9.129, quota >= 3, perl-Quota
@@ -27,6 +28,9 @@ AutoReqProv: no
 e-smith server and gateway software - quota module.
 
 %changelog
+* Sun Nov 28 2010 Ian Wells <esmith@wellsi.com> 2.2.0-8.sme
+- Quota panel should only accept uppercase units [SME: 6406]
+
 * Sat Nov 27 2010 Ian Wells <esmith@wellsi.com> 2.2.0-7.sme
 - Correction to allow units in upper and lower case [SME: 5248]
 
@@ -497,6 +501,7 @@ e-smith server and gateway software - quota module.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 mkdir -p root/etc/e-smith/events/post-{install,upgrade}
